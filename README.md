@@ -34,7 +34,19 @@ A production-ready REST API for converting files between DOCX and PDF formats us
 
 ## Getting Started
 
-### 1. Clone and install dependencies
+### Option A — Docker (recommended, no local LibreOffice or Redis needed)
+
+```bash
+docker compose up
+```
+
+Server runs at `http://localhost:3000`. Redis starts automatically and LibreOffice is bundled in the container.
+
+---
+
+### Option B — Manual setup
+
+#### 1. Clone and install dependencies
 
 ```bash
 git clone https://github.com/UnderAgeGiant/underagegiant-pdf-convertor-claude-code.git
