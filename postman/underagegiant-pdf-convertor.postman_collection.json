@@ -62,7 +62,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/path/to/your/document.docx",
+                  "src": "files/sample.docx",
                   "description": "A valid .docx file"
                 }
               ]
@@ -136,7 +136,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/path/to/your/image.png",
+                  "src": "files/sample.pdf",
                   "description": "A non-DOCX file to trigger 415"
                 }
               ]
@@ -176,7 +176,7 @@
                   "key": "file",
                   "type": "file",
                   "src": "/path/to/large-file-over-50mb.docx",
-                  "description": "A file exceeding the 50MB limit"
+                  "description": "Replace with a file exceeding the 50MB limit"
                 }
               ]
             }
@@ -208,7 +208,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/path/to/your/document.docx"
+                  "src": "files/sample.docx"
                 }
               ]
             },
@@ -257,7 +257,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/path/to/your/document.pdf",
+                  "src": "files/sample.pdf",
                   "description": "A valid .pdf file"
                 }
               ]
@@ -331,7 +331,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/path/to/your/document.docx",
+                  "src": "files/sample.docx",
                   "description": "A DOCX file sent to the PDF endpoint to trigger 415"
                 }
               ]
@@ -371,7 +371,7 @@
                   "key": "file",
                   "type": "file",
                   "src": "/path/to/large-file-over-50mb.pdf",
-                  "description": "A file exceeding the 50MB limit"
+                  "description": "Replace with a file exceeding the 50MB limit"
                 }
               ]
             }
@@ -403,7 +403,7 @@
                 {
                   "key": "file",
                   "type": "file",
-                  "src": "/path/to/your/document.pdf"
+                  "src": "files/sample.pdf"
                 }
               ]
             },
