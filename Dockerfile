@@ -1,6 +1,6 @@
 FROM node:20-slim
 
-# Install LibreOffice
+# Install LibreOffice as root before switching users
 RUN apt-get update && apt-get install -y \
   libreoffice \
   --no-install-recommends \
@@ -8,10 +8,15 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY package*.json ./
+# Give the node user ownership of the working directory
+RUN chown -R node:node /app
+
+USER node
+
+COPY --chown=node:node package*.json ./
 RUN npm install
 
-COPY . .
+COPY --chown=node:node . .
 
 EXPOSE 3000
 
