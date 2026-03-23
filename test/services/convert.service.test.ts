@@ -12,7 +12,7 @@ describe('ConvertService', () => {
   let libreStub: sinon.SinonStub;
 
   beforeEach(() => {
-    libreStub = sinon.stub(libre, 'convert');
+    libreStub = sinon.stub(libre, 'convertWithOptions');
   });
 
   afterEach(() => {
@@ -24,18 +24,18 @@ describe('ConvertService', () => {
       const inputBuffer = Buffer.from('fake docx content');
       const outputBuffer = Buffer.from('fake pdf content');
 
-      libreStub.callsFake((_buf, _ext, _filter, cb) => cb(null, outputBuffer));
+      libreStub.callsFake((_buf, _ext, _filter, _opts, cb) => cb(null, outputBuffer));
 
       const result = await docxToPdf(inputBuffer, DOCX_MIME);
 
       expect(result).to.deep.equal(outputBuffer);
       expect(libreStub.calledOnce).to.be.true;
-      expect(libreStub.firstCall.args[1]).to.equal('.pdf');
+      expect(libreStub.firstCall.args[1]).to.equal('pdf');
     });
 
     it('should accept application/msword mimetype', async () => {
       const outputBuffer = Buffer.from('fake pdf');
-      libreStub.callsFake((_buf, _ext, _filter, cb) => cb(null, outputBuffer));
+      libreStub.callsFake((_buf, _ext, _filter, _opts, cb) => cb(null, outputBuffer));
 
       const result = await docxToPdf(Buffer.from('doc'), DOC_MIME);
       expect(result).to.deep.equal(outputBuffer);
@@ -61,7 +61,7 @@ describe('ConvertService', () => {
     });
 
     it('should propagate libreoffice conversion errors', async () => {
-      libreStub.callsFake((_buf, _ext, _filter, cb) =>
+      libreStub.callsFake((_buf, _ext, _filter, _opts, cb) =>
         cb(new Error('LibreOffice not found'))
       );
 
@@ -79,13 +79,13 @@ describe('ConvertService', () => {
       const inputBuffer = Buffer.from('fake pdf content');
       const outputBuffer = Buffer.from('fake docx content');
 
-      libreStub.callsFake((_buf, _ext, _filter, cb) => cb(null, outputBuffer));
+      libreStub.callsFake((_buf, _ext, _filter, _opts, cb) => cb(null, outputBuffer));
 
       const result = await pdfToDocx(inputBuffer, PDF_MIME);
 
       expect(result).to.deep.equal(outputBuffer);
       expect(libreStub.calledOnce).to.be.true;
-      expect(libreStub.firstCall.args[1]).to.equal('.docx');
+      expect(libreStub.firstCall.args[1]).to.equal('docx');
     });
 
     it('should throw UnsupportedMediaError for non-PDF input', async () => {
@@ -108,7 +108,7 @@ describe('ConvertService', () => {
     });
 
     it('should propagate libreoffice conversion errors', async () => {
-      libreStub.callsFake((_buf, _ext, _filter, cb) =>
+      libreStub.callsFake((_buf, _ext, _filter, _opts, cb) =>
         cb(new Error('Conversion failed'))
       );
 
