@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pdf-convertor-config
+  namespace: pdf-convertor
+# Non-sensitive config. For production, move REDIS_URL into a Secret:
+#   kubectl create secret generic pdf-convertor-secret \
+#     --namespace pdf-convertor \
+#     --from-literal=REDIS_URL=redis://<user>:<pass>@redis:6379
+# Then replace the configMapRef in api.yaml with secretRef for that key.
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  REDIS_URL: "redis://redis:6379"
+  RATE_LIMIT_WINDOW_MS: "900000"
+  RATE_LIMIT_MAX: "10"
+  LOG_LEVEL: "info"
